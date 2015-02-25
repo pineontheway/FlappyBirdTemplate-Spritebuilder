@@ -74,10 +74,10 @@
         _gameOver = TRUE;
         _restartButton.visible = TRUE;
         
-        character.physicsBody.velocity = ccp(0.0f, character.physicsBody.velocity.y);
-        character.rotation = 90.f;
-        character.physicsBody.allowsRotation = FALSE;
-        [character stopAllActions];
+        Character.CCPhysicsBody.velocity = ccp(0.0f, Character.CCPhysicsBody.velocity.y);
+        Character.rotation = 90.f;
+        Character.CCPhysicsBody.allowsRotation = FALSE;
+        [Character stopAllActions];
         
         CCActionMoveBy *moveBy = [CCActionMoveBy actionWithDuration:0.2f position:ccp(-2, 2)];
         CCActionInterval *reverseMovement = [moveBy reverse];
@@ -98,11 +98,11 @@
 - (void)addObstacle {
     Obstacle *obstacle = (Obstacle *)[CCBReader load:@"Obstacle"];
     CGPoint screenPosition = [self convertToWorldSpace:ccp(380, 0)];
-    CGPoint worldPosition = [physicsNode convertToNodeSpace:screenPosition];
+    CGPoint worldPosition = [CCPhysicsNode convertToNodeSpace:screenPosition];
     obstacle.position = worldPosition;
     [obstacle setupRandomPosition];
     obstacle.zOrder = DrawingOrderPipes;
-    [physicsNode addChild:obstacle];
+    [CCPhysicsNode addChild:obstacle];
     [_obstacles addObject:obstacle];
 }
 
@@ -118,7 +118,7 @@
 {
     _sinceTouch += delta;
     
-    character.rotation = clampf(character.rotation, -30.f, 90.f);
+    Character.rotation = clampf(character.rotation, -30.f, 90.f);
     
     if (character.physicsBody.allowsRotation) {
         float angularVelocity = clampf(character.physicsBody.angularVelocity, -2.f, 1.f);

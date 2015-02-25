@@ -13,6 +13,8 @@
 {
     // put update code here
 }
+-(void) addObstacle{
+}
 
 // put new methods here
 
