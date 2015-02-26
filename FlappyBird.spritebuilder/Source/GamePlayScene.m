@@ -6,6 +6,8 @@
 
 - (void)initialize
 {
+    character = (Character*) [CCBReader load:@"Character"];
+    [physicsnode addChild:character];
     // your code here
 }
 
@@ -13,9 +15,10 @@
 {
     // put update code here
 }
--(void) addObstacle{
-}
 
+-(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event{
+    [character flap];
+}
 // put new methods here
 
 @end
